@@ -50,17 +50,17 @@ def print_item(key):
 			  + " - " + tasks_dict[key]['description'] + note)
 
 def list_items():
-   for key,value in sorted(tasks_dict.items(),  key=lambda x: x[0]):
+   for key,value in sorted(tasks_dict.items(),  key=lambda x: int(x[0])):
        print_item(key)
 
 def filter_items(filter):
-   for key,value in sorted(tasks_dict.items(),  key=lambda x: x[0]):
+   for key,value in sorted(tasks_dict.items(),  key=lambda x: int(x[0])):
        # print anything with the filter if applicable - if there's no filter also skip it
        if ('tag' in tasks_dict[key] and filter == tasks_dict[key]['tag']):
            print_item(key)
 
 def search_items(search_string):
-   for key,value in sorted(tasks_dict.items(),  key=lambda x: x[0]):
+   for key,value in sorted(tasks_dict.items(),  key=lambda x: int(x[0])):
        # print anything with the filter if applicable - if there's no filter also skip it
        if (search_string.lower() in tasks_dict[key]['description'].lower()):
            print_item(key)
@@ -144,7 +144,7 @@ class TaskList:
 					print("Tag: " + tasks_dict[task]['tag'])
 
 	def show_incomplete_tasks(self):
-	   for key,value in sorted(tasks_dict.items(),  key=lambda x: x[0]):
+	   for key,value in sorted(tasks_dict.items(),  key=lambda x: int(x[0])):
 	       # print anything with the filter if applicable - if there's no filter also skip it
 	       if (tasks_dict[key]['status'] != "Done"):
 		   print_item(key)
@@ -172,7 +172,6 @@ class CommandProc(cmd.Cmd):
 
     def do_done(self, task):
         'Usage: done {id} (Complete the task with the specified id)'
-        print "done {id}"
 	t = TaskList()
 	t.done_task(task)
 
@@ -226,6 +225,3 @@ class CommandProc(cmd.Cmd):
 
 if __name__ == '__main__':
     CommandProc().cmdloop()
-
-#for tasks in tasks_dict:
-#    print(tasks['description'])
