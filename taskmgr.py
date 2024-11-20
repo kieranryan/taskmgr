@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 # Simple task manager 
 # Author: Kieran Ryan
@@ -31,18 +31,18 @@ def save():
       json.dump(tasks_dict, fp, sort_keys=True)
    with open('tasks.config', 'w') as fp2:
 	   json.dump(conf_dict, fp2)
-   print "Saved"
+   print ("Saved")
 
 # an individual item in row format
 def print_item(key):
        date_due = 'YYYY-MM-DD'
        if 'date-due' in tasks_dict[key]:
-	      date_due = tasks_dict[key]['date-due'] 
+              date_due = tasks_dict[key]['date-due'] 
        priority = 'Normal'
        if 'priority' in tasks_dict[key]:
-	      priority = tasks_dict[key]['priority'] 
+              priority = tasks_dict[key]['priority'] 
        if 'note' in tasks_dict[key]:
-	  note = " ..."
+          note = " ..."
        else:
           note = ""
 	
