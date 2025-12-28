@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMgr - Task Manager</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TaskMgr</h1>
+            <p class="subtitle">Simple Task Management</p>
+        </header>
+
+        <div class="controls">
+            <div class="add-task-form">
+                <input type="text" id="taskInput" placeholder="Enter task description..." autocomplete="off">
+                <button id="addTaskBtn" class="btn btn-primary">Add Task</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="incomplete">To Do</button>
+                <button class="filter-btn" data-filter="doing">Doing</button>
+                <button class="filter-btn" data-filter="done">Done</button>
+                <input type="text" id="searchInput" placeholder="Search tasks..." autocomplete="off">
+            </div>
+        </div>
+
+        <div id="taskList" class="task-list">
+            <div class="loading">Loading tasks...</div>
+        </div>
+
+        <!-- Task Detail Modal -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Task Details</h2>
+                <div id="modalBody">
+                    <div class="task-detail-section">
+                        <label>Description:</label>
+                        <p id="detailDescription"></p>
+                    </div>
+                    <div class="task-detail-section">
+                        <label>Status:</label>
+                        <p id="detailStatus"></p>
+                    </div>
+                    <div class="task-detail-section">
+                        <label>Priority:</label>
+                        <p id="detailPriority"></p>
+                    </div>
+                    <div class="task-detail-section">
+                        <label>Created:</label>
+                        <p id="detailCreated"></p>
+                    </div>
+                    <div class="task-detail-section" id="dueDateSection">
+                        <label>Due Date:</label>
+                        <p id="detailDue"></p>
+                    </div>
+                    <div class="task-detail-section" id="tagSection">
+                        <label>Tag:</label>
+                        <p id="detailTag"></p>
+                    </div>
+                    <div class="task-detail-section" id="noteSection">
+                        <label>Note:</label>
+                        <p id="detailNote"></p>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="editTaskBtn" class="btn btn-secondary">Edit</button>
+                    <button id="closeModalBtn" class="btn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Task Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close edit-close">&times;</span>
+                <h2>Edit Task</h2>
+                <div id="editModalBody">
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <select id="editStatus">
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="Doing">Doing</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority:</label>
+                        <select id="editPriority">
+                            <option value="Normal">Normal</option>
+                            <option value="HIGH">HIGH</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Due Date:</label>
+                        <input type="date" id="editDueDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Tag:</label>
+                        <input type="text" id="editTag" placeholder="Enter tag">
+                    </div>
+                    <div class="form-group">
+                        <label>Note:</label>
+                        <textarea id="editNote" rows="3" placeholder="Enter note"></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="saveEditBtn" class="btn btn-primary">Save</button>
+                    <button id="cancelEditBtn" class="btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
