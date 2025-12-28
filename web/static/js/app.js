@@ -56,6 +56,11 @@ function createTaskCard(task) {
     }
 
     if (task.tag) {
+        const tagLabel = document.createElement('span');
+        tagLabel.className = 'status-label';
+        tagLabel.textContent = 'Tag: ';
+        meta.appendChild(tagLabel);
+
         const tagBadge = document.createElement('span');
         tagBadge.className = 'tag-badge';
         tagBadge.textContent = task.tag;
