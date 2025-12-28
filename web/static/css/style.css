@@ -196,11 +196,26 @@ header h1 {
     font-weight: 600;
 }
 
+.task-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
 .task-meta {
     display: flex;
     gap: 12px;
+    align-items: center;
     flex-wrap: wrap;
     font-size: 13px;
+    flex: 1;
+}
+
+.status-label {
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .status-badge {
@@ -255,7 +270,7 @@ header h1 {
 .task-actions {
     display: flex;
     gap: 8px;
-    margin-top: 12px;
+    flex-shrink: 0;
 }
 
 .task-action-btn {

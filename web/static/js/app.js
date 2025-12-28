@@ -38,6 +38,11 @@ function createTaskCard(task) {
     const meta = document.createElement('div');
     meta.className = 'task-meta';
 
+    const statusLabel = document.createElement('span');
+    statusLabel.className = 'status-label';
+    statusLabel.textContent = 'Status: ';
+    meta.appendChild(statusLabel);
+
     const statusBadge = document.createElement('span');
     statusBadge.className = `status-badge ${task.status.toLowerCase()}`;
     statusBadge.textContent = task.status;
@@ -109,9 +114,13 @@ function createTaskCard(task) {
     };
     actions.appendChild(deleteBtn);
 
+    const bottomRow = document.createElement('div');
+    bottomRow.className = 'task-bottom-row';
+    bottomRow.appendChild(meta);
+    bottomRow.appendChild(actions);
+
     card.appendChild(header);
-    card.appendChild(meta);
-    card.appendChild(actions);
+    card.appendChild(bottomRow);
 
     card.onclick = () => showTaskDetail(task);
 
