@@ -62,8 +62,8 @@ class TaskService:
         return self.tasks
 
     def get_tasks_sorted(self) -> List[Task]:
-        """Get all tasks sorted by ID."""
-        return [self.tasks[key] for key in sorted(self.tasks.keys(), key=lambda x: int(x))]
+        """Get all tasks sorted by ID in descending order (newest first)."""
+        return [self.tasks[key] for key in sorted(self.tasks.keys(), key=lambda x: int(x), reverse=True)]
 
     def delete_task(self, task_id: str) -> bool:
         """Delete a task by ID."""
