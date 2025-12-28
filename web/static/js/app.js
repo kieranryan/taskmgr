@@ -258,9 +258,11 @@ function showTaskDetail(task) {
     document.getElementById('taskModal').classList.add('show');
 }
 
-function closeTaskModal() {
+function closeTaskModal(keepCurrentTask = false) {
     document.getElementById('taskModal').classList.remove('show');
-    currentTask = null;
+    if (!keepCurrentTask) {
+        currentTask = null;
+    }
 }
 
 function showEditModal() {
@@ -272,12 +274,13 @@ function showEditModal() {
     document.getElementById('editTag').value = currentTask.tag || '';
     document.getElementById('editNote').value = currentTask.note || '';
 
-    closeTaskModal();
+    closeTaskModal(true); // Keep currentTask for edit modal
     document.getElementById('editModal').classList.add('show');
 }
 
 function closeEditModal() {
     document.getElementById('editModal').classList.remove('show');
+    currentTask = null;
 }
 
 async function saveEdit() {
@@ -294,7 +297,6 @@ async function saveEdit() {
     try {
         await api.updateTask(currentTask.id, updates);
         closeEditModal();
-        currentTask = null;
         await loadTasks();
     } catch (error) {
         console.error('Error updating task:', error);
