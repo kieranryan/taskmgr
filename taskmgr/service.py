@@ -61,9 +61,15 @@ class TaskService:
         """Get all tasks."""
         return self.tasks
 
-    def get_tasks_sorted(self) -> List[Task]:
-        """Get all tasks sorted by ID in descending order (newest first)."""
-        return [self.tasks[key] for key in sorted(self.tasks.keys(), key=lambda x: int(x), reverse=True)]
+    def get_tasks_sorted(self, reverse: bool = True) -> List[Task]:
+        """Get all tasks sorted by ID.
+
+        Args:
+            reverse: If True, sort in descending order (newest first).
+                    If False, sort in ascending order (oldest first).
+                    Default is True for web interface compatibility.
+        """
+        return [self.tasks[key] for key in sorted(self.tasks.keys(), key=lambda x: int(x), reverse=reverse)]
 
     def delete_task(self, task_id: str) -> bool:
         """Delete a task by ID."""
@@ -107,35 +113,35 @@ class TaskService:
             return self.tasks[task_id]
         return None
 
-    def filter_by_tag(self, tag: str) -> List[Task]:
+    def filter_by_tag(self, tag: str, reverse: bool = True) -> List[Task]:
         """Filter tasks by tag."""
         result = []
-        for task in self.get_tasks_sorted():
+        for task in self.get_tasks_sorted(reverse=reverse):
             if task.tag == tag:
                 result.append(task)
         return result
 
-    def filter_by_status(self, status: TaskStatus) -> List[Task]:
+    def filter_by_status(self, status: TaskStatus, reverse: bool = True) -> List[Task]:
         """Filter tasks by status."""
         result = []
-        for task in self.get_tasks_sorted():
+        for task in self.get_tasks_sorted(reverse=reverse):
             if task.status == status:
                 result.append(task)
         return result
 
-    def search_tasks(self, query: str) -> List[Task]:
+    def search_tasks(self, query: str, reverse: bool = True) -> List[Task]:
         """Search tasks by description (case-insensitive)."""
         result = []
         query_lower = query.lower()
-        for task in self.get_tasks_sorted():
+        for task in self.get_tasks_sorted(reverse=reverse):
             if query_lower in task.description.lower():
                 result.append(task)
         return result
 
-    def get_incomplete_tasks(self) -> List[Task]:
+    def get_incomplete_tasks(self, reverse: bool = True) -> List[Task]:
         """Get all incomplete tasks (not Done)."""
         result = []
-        for task in self.get_tasks_sorted():
+        for task in self.get_tasks_sorted(reverse=reverse):
             if task.status != TaskStatus.DONE:
                 result.append(task)
         return result

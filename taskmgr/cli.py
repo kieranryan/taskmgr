@@ -50,7 +50,7 @@ class TaskCLI(cmd.Cmd):
 
     def do_all(self, line):
         """Usage: all (list all tasks)"""
-        for task in self.service.get_tasks_sorted():
+        for task in self.service.get_tasks_sorted(reverse=False):
             print(format_task_row(task))
 
     def do_add(self, task_desc):
@@ -151,18 +151,18 @@ class TaskCLI(cmd.Cmd):
 
     def do_filter(self, tag):
         """Usage: filter {tag} (filter by a specified tag)"""
-        tasks = self.service.filter_by_tag(tag)
+        tasks = self.service.filter_by_tag(tag, reverse=False)
         for task in tasks:
             print(format_task_row(task))
 
     def do_tbd(self, line):
         """Usage: tbd (list incomplete tasks)"""
-        tasks = self.service.get_incomplete_tasks()
+        tasks = self.service.get_incomplete_tasks(reverse=False)
         for task in tasks:
             print(format_task_row(task))
 
     def do_search(self, query):
         """Usage: search {search-string} (search tasks for the specified string - ignores case)"""
-        tasks = self.service.search_tasks(query)
+        tasks = self.service.search_tasks(query, reverse=False)
         for task in tasks:
             print(format_task_row(task))
