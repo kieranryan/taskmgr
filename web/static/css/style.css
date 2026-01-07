@@ -187,6 +187,13 @@ header h1 {
     opacity: 0.6;
 }
 
+.task-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
 .task-id {
     background: #e0e0e0;
     color: #666;
@@ -194,6 +201,12 @@ header h1 {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 600;
+}
+
+.task-date {
+    color: #999;
+    font-size: 11px;
+    font-weight: 400;
 }
 
 .task-bottom-row {

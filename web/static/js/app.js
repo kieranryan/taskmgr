@@ -28,12 +28,22 @@ function createTaskCard(task) {
     description.className = 'task-description';
     description.textContent = task.description;
 
+    const headerRight = document.createElement('div');
+    headerRight.className = 'task-header-right';
+
     const taskId = document.createElement('span');
     taskId.className = 'task-id';
     taskId.textContent = `#${task.id}`;
 
+    const taskDate = document.createElement('span');
+    taskDate.className = 'task-date';
+    taskDate.textContent = task.date_created;
+
+    headerRight.appendChild(taskId);
+    headerRight.appendChild(taskDate);
+
     header.appendChild(description);
-    header.appendChild(taskId);
+    header.appendChild(headerRight);
 
     const meta = document.createElement('div');
     meta.className = 'task-meta';
